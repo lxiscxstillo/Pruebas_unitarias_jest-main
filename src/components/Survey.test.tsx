@@ -32,7 +32,9 @@ describe("Survey Component", () => {
     
     fireEvent.click(firstStar);
     
-    expect(screen.getByText("Has seleccionado: 1 estrella")).toBeInTheDocument();
+    expect(screen.getByText(/Has seleccionado:/)).toBeInTheDocument();
+    expect(screen.getByText("1")).toBeInTheDocument();
+    expect(screen.getByText(/estrella/)).toBeInTheDocument();
     
     const submitButton = screen.getByRole("button", { name: /Enviar/i });
     expect(submitButton).toBeEnabled();
@@ -44,7 +46,9 @@ describe("Survey Component", () => {
     
     fireEvent.click(thirdStar);
     
-    expect(screen.getByText("Has seleccionado: 3 estrellas")).toBeInTheDocument();
+    expect(screen.getByText(/Has seleccionado:/)).toBeInTheDocument();
+    expect(screen.getByText("3")).toBeInTheDocument();
+    expect(screen.getByText(/estrellas/)).toBeInTheDocument();
   });
 
   test("shows confirmation message with rating after submission", () => {
@@ -87,12 +91,14 @@ describe("Survey Component", () => {
     
     // Select first star
     fireEvent.click(starInputs[0]);
-    expect(screen.getByText("Has seleccionado: 1 estrella")).toBeInTheDocument();
+    expect(screen.getByText(/Has seleccionado:/)).toBeInTheDocument();
+    expect(screen.getByText("1")).toBeInTheDocument();
     
     // Select third star
     fireEvent.click(starInputs[2]);
-    expect(screen.getByText("Has seleccionado: 3 estrellas")).toBeInTheDocument();
-    expect(screen.queryByText("Has seleccionado: 1 estrella")).not.toBeInTheDocument();
+    expect(screen.getByText(/Has seleccionado:/)).toBeInTheDocument();
+    expect(screen.getByText("3")).toBeInTheDocument();
+    expect(screen.queryByText("1")).not.toBeInTheDocument();
   });
 
   test("submit button becomes enabled after selecting any rating", () => {

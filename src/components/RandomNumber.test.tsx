@@ -2,13 +2,10 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import RandomNumber from "./RandomNumber";
 
-// Mock Math.random to control random number generation
-const mockMath = Object.create(global.Math);
-global.Math = mockMath;
-
 describe("RandomNumber Component", () => {
   beforeEach(() => {
-    mockMath.random = jest.fn();
+    // Mock Math.random to return predictable values
+    jest.spyOn(Math, 'random').mockReturnValue(0.5);
   });
 
   afterEach(() => {
@@ -25,8 +22,7 @@ describe("RandomNumber Component", () => {
   });
 
   test("shows number after clicking the button", () => {
-    mockMath.random.mockReturnValue(0.5); // This will generate 50
-    mockMath.floor = jest.fn().mockReturnValue(49);
+    (Math.random as jest.Mock).mockReturnValue(0.49); // This will generate 50 (0.49 * 100 + 1 = 50)
     
     render(<RandomNumber />);
     
@@ -42,26 +38,26 @@ describe("RandomNumber Component", () => {
     const testCases = [
       { randomValue: 0, expected: 1 },
       { randomValue: 0.99, expected: 100 },
-      { randomValue: 0.5, expected: 51 }
+      { randomValue: 0.49, expected: 50 }
     ];
 
     testCases.forEach(({ randomValue, expected }) => {
-      mockMath.random.mockReturnValue(randomValue);
-      mockMath.floor = jest.fn().mockReturnValue(expected - 1);
+      (Math.random as jest.Mock).mockReturnValue(randomValue);
       
-      render(<RandomNumber />);
+      const { unmount } = render(<RandomNumber />);
       
       const button = screen.getByRole("button", { name: /Generar Número Aleatorio/i });
       fireEvent.click(button);
       
       expect(screen.getByText(expected.toString())).toBeInTheDocument();
+      
+      unmount();
     });
   });
 
   test("generates different numbers on multiple clicks", () => {
     // First click generates 25
-    mockMath.random.mockReturnValueOnce(0.24);
-    mockMath.floor = jest.fn().mockReturnValueOnce(24);
+    (Math.random as jest.Mock).mockReturnValueOnce(0.24);
     
     render(<RandomNumber />);
     
@@ -71,8 +67,7 @@ describe("RandomNumber Component", () => {
     expect(screen.getByText("25")).toBeInTheDocument();
     
     // Second click generates 75
-    mockMath.random.mockReturnValueOnce(0.74);
-    mockMath.floor = jest.fn().mockReturnValueOnce(74);
+    (Math.random as jest.Mock).mockReturnValueOnce(0.74);
     
     fireEvent.click(button);
     

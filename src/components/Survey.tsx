@@ -53,7 +53,7 @@ export default function Survey() {
       {selectedRating && (
         <div className="text-center mb-4">
           <p className="text-lg">
-            Has seleccionado: <span className="font-bold text-blue-600">{selectedRating}</span> estrella{selectedRating !== 1 ? 's' : ''}
+            Has seleccionado: <span className="font-bold text-blue-600">{selectedRating}</span> {selectedRating !== 1 ? 'estrellas' : 'estrella'}
           </p>
         </div>
       )}

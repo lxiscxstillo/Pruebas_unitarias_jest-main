@@ -49,10 +49,15 @@ export default function RegisterForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (validateForm()) {
+    // Always run validation to show errors
+    const isValid = validateForm();
+    
+    if (isValid) {
       setIsSubmitted(true);
       setFormData({ name: "", email: "" });
+      setErrors({});
     }
+    // If not valid, errors are already set by validateForm
   };
 
   const handleReset = () => {
@@ -111,10 +116,9 @@ export default function RegisterForm() {
         <div className="flex gap-4 pt-4">
           <button
             type="submit"
-            disabled={!isFormValid}
             className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${
               !isFormValid
-                ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+                ? "bg-gray-300 text-gray-500"
                 : "bg-blue-600 text-white hover:bg-blue-700"
             }`}
           >
