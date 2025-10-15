@@ -53,7 +53,6 @@ const initialProducts: Product[] = [
 
 export default function ShoppingCart() {
   const [cart, setCart] = useState<CartItem[]>([]);
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const addToCart = (product: Product) => {
     setCart(prevCart => {

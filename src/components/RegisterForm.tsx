@@ -60,13 +60,8 @@ export default function RegisterForm() {
     // If not valid, errors are already set by validateForm
   };
 
-  const handleReset = () => {
-    setFormData({ name: "", email: "" });
-    setIsSubmitted(false);
-    setErrors({});
-  };
-
-  const isFormValid = formData.name.trim() !== "" && formData.email.trim() !== "";
+  // Eliminamos las funciones no utilizadas ya que la lógica de reinicio
+  // está incluida en handleSubmit cuando el formulario se envía exitosamente
 
   return (
     <div className="h-full w-full flex flex-col items-center justify-center p-8 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
