@@ -69,7 +69,6 @@ export default function RegisterForm() {
   const isFormValid = formData.name.trim() !== "" && formData.email.trim() !== "";
 
   return (
-      return (
     <div className="h-full w-full flex flex-col items-center justify-center p-8 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
       <div className="w-full max-w-lg backdrop-blur-lg bg-white/10 rounded-2xl p-8 shadow-xl relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 animate-pulse"></div>
@@ -145,14 +144,14 @@ export default function RegisterForm() {
                          backdrop-blur-sm animate-fade-in">
             <p className="text-lg text-emerald-300 flex items-center gap-3">
               <span className="text-2xl">✓</span>
-              Cuenta creada exitosamente para {formData.name}
-              <br />
-              <span className="text-emerald-400/80 text-sm mt-1">({formData.email})</span>
+              Cuenta creada exitosamente
+            </p>
+            <p className="text-emerald-400/80 text-sm mt-2">
+              Email registrado: {formData.email}
             </p>
           </div>
         )}
       </div>
     </div>
-  );
   );
 }
