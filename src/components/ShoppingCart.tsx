@@ -4,6 +4,8 @@ interface Product {
   id: number;
   name: string;
   price: number;
+  description: string;
+  image: string;
 }
 
 interface CartItem {
@@ -12,15 +14,46 @@ interface CartItem {
 }
 
 const initialProducts: Product[] = [
-  { id: 1, name: "Laptop", price: 999.99 },
-  { id: 2, name: "Mouse", price: 29.99 },
-  { id: 3, name: "Teclado", price: 79.99 },
-  { id: 4, name: "Monitor", price: 299.99 },
-  { id: 5, name: "Auriculares", price: 149.99 },
+  { 
+    id: 1, 
+    name: "Laptop Quantum X", 
+    price: 999.99,
+    description: "Procesador cuántico de última generación",
+    image: "💻"
+  },
+  { 
+    id: 2, 
+    name: "Mouse Háptico", 
+    price: 129.99,
+    description: "Control gestual avanzado",
+    image: "🖱️"
+  },
+  { 
+    id: 3, 
+    name: "Teclado Neural", 
+    price: 179.99,
+    description: "Respuesta táctil biomimética",
+    image: "⌨️"
+  },
+  { 
+    id: 4, 
+    name: "Monitor Holográfico", 
+    price: 599.99,
+    description: "Proyección 4D en tiempo real",
+    image: "🖥️"
+  },
+  { 
+    id: 5, 
+    name: "Auriculares IA", 
+    price: 249.99,
+    description: "Audio adaptativo con IA",
+    image: "🎧"
+  },
 ];
 
 export default function ShoppingCart() {
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const addToCart = (product: Product) => {
     setCart(prevCart => {
