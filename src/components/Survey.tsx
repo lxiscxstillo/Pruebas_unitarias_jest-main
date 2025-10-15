@@ -27,11 +27,11 @@ export default function Survey() {
         
         <div className="relative z-10 space-y-8">
           <h1 className="text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-            Tu Opinión Importa
+            Encuesta de Satisfacción
           </h1>
-          
+
           <div className="text-center">
-            <p className="text-xl text-blue-200">¿Cómo calificarías nuestra experiencia?</p>
+            <p className="text-xl text-blue-200">¿Cómo calificarías nuestro servicio?</p>
             
             <div className="flex gap-4 justify-center my-8">
               {[1, 2, 3, 4, 5].map((rating) => (
@@ -71,12 +71,13 @@ export default function Survey() {
 
             {selectedRating && (
               <div className="mb-8">
-                <p className="text-xl text-blue-200">
-                  Has seleccionado: 
-                  <span className="font-bold ml-2 text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
-                    {selectedRating} {selectedRating !== 1 ? 'estrellas' : 'estrella'}
+                <p className="text-xl text-blue-200">Has seleccionado:</p>
+                <div className="mt-2">
+                  <span className="font-bold text-2xl text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
+                    {selectedRating}
                   </span>
-                </p>
+                  <span className="ml-2 text-blue-200">{selectedRating !== 1 ? 'estrellas' : 'estrella'}</span>
+                </div>
               </div>
             )}
 

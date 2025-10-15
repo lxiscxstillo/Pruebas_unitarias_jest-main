@@ -16,36 +16,36 @@ interface CartItem {
 const initialProducts: Product[] = [
   { 
     id: 1, 
-    name: "Laptop Quantum X", 
+    name: "Laptop", 
     price: 999.99,
     description: "Procesador cuántico de última generación",
     image: "💻"
   },
   { 
     id: 2, 
-    name: "Mouse Háptico", 
-    price: 129.99,
+    name: "Mouse", 
+    price: 29.99,
     description: "Control gestual avanzado",
     image: "🖱️"
   },
   { 
     id: 3, 
-    name: "Teclado Neural", 
-    price: 179.99,
+    name: "Teclado", 
+    price: 79.99,
     description: "Respuesta táctil biomimética",
     image: "⌨️"
   },
   { 
     id: 4, 
-    name: "Monitor Holográfico", 
-    price: 599.99,
+    name: "Monitor", 
+    price: 299.99,
     description: "Proyección 4D en tiempo real",
     image: "🖥️"
   },
   { 
     id: 5, 
-    name: "Auriculares IA", 
-    price: 249.99,
+    name: "Auriculares", 
+    price: 149.99,
     description: "Audio adaptativo con IA",
     image: "🎧"
   },
@@ -127,7 +127,7 @@ export default function ShoppingCart() {
                   className="px-4 py-2 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 text-white
                            shadow-lg hover:shadow-purple-500/25 transform hover:scale-105 transition-all duration-300"
                 >
-                  Agregar
+                  Agregar al carrito
                 </button>
               </div>
             ))}
@@ -179,10 +179,11 @@ export default function ShoppingCart() {
                     </div>
                     <button
                       onClick={() => removeFromCart(item.product.id)}
-                      className="p-2 text-red-400 hover:text-red-300 transition-colors"
+                      className="p-2 text-red-400 hover:text-red-300 transition-colors flex items-center gap-2"
                       title="Eliminar"
                     >
-                      ✕
+                      <span className="text-lg">✕</span>
+                      <span>Eliminar</span>
                     </button>
                   </div>
                 </div>

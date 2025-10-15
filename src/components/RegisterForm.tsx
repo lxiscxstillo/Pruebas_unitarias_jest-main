@@ -60,8 +60,13 @@ export default function RegisterForm() {
     // If not valid, errors are already set by validateForm
   };
 
-  // Eliminamos las funciones no utilizadas ya que la lógica de reinicio
-  // está incluida en handleSubmit cuando el formulario se envía exitosamente
+  const handleReset = () => {
+    setFormData({ name: "", email: "" });
+    setIsSubmitted(false);
+    setErrors({});
+  };
+
+  const isFormValid = formData.name.trim() !== "" && formData.email.trim() !== "";
 
   return (
     <div className="h-full w-full flex flex-col items-center justify-center p-8 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
@@ -69,13 +74,13 @@ export default function RegisterForm() {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 animate-pulse"></div>
         
         <h1 className="text-4xl font-bold mb-8 text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-          Únete a Nosotros
+          Formulario de Registro
         </h1>
         
         <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
           <div className="space-y-2">
             <label htmlFor="name" className="block text-lg font-medium text-blue-200">
-              Nombre
+              Nombre completo
             </label>
             <input
               type="text"
@@ -99,7 +104,7 @@ export default function RegisterForm() {
 
           <div className="space-y-2">
             <label htmlFor="email" className="block text-lg font-medium text-blue-200">
-              Email
+              Correo electrónico
             </label>
             <input
               type="email"
@@ -123,26 +128,30 @@ export default function RegisterForm() {
 
           <button
             type="submit"
-            className="w-full px-6 py-4 mt-6 rounded-xl bg-gradient-to-r from-blue-500 to-purple-500 
-                     text-white font-semibold text-lg shadow-lg hover:shadow-purple-500/25 
-                     transform hover:scale-[1.02] transition-all duration-300
-                     relative overflow-hidden group"
+            className={`w-full px-6 py-4 mt-6 rounded-xl font-semibold text-lg shadow-lg transform hover:scale-[1.02] transition-all duration-300 relative overflow-hidden group ${
+              !isFormValid
+                ? 'bg-gray-300 text-gray-500'
+                : 'bg-gradient-to-r from-blue-500 to-purple-500 text-white hover:shadow-purple-500/25'
+            }`}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 
-                          group-hover:opacity-20 transition-opacity duration-300"></div>
-            <span className="relative z-10">Crear Cuenta</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+            <span className="relative z-10">Registrar</span>
+          </button>
+          
+          <button
+            type="button"
+            onClick={handleReset}
+            className="w-full mt-3 px-6 py-3 rounded-xl bg-white/10 text-blue-200 shadow-lg hover:bg-white/20 transform hover:scale-[1.02] transition-all duration-300"
+          >
+            Limpiar
           </button>
         </form>
 
         {isSubmitted && (
-          <div className="mt-8 p-6 rounded-xl bg-gradient-to-r from-green-500/20 to-emerald-500/20 
-                         backdrop-blur-sm animate-fade-in">
+          <div className="mt-8 p-6 rounded-xl bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-sm animate-fade-in">
             <p className="text-lg text-emerald-300 flex items-center gap-3">
               <span className="text-2xl">✓</span>
-              Cuenta creada exitosamente
-            </p>
-            <p className="text-emerald-400/80 text-sm mt-2">
-              Email registrado: {formData.email}
+              ¡Registro exitoso!
             </p>
           </div>
         )}

@@ -14,9 +14,9 @@ export default function RandomNumber() {
         <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 animate-pulse"></div>
         
         <h1 className="text-4xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
-          Generador Numérico
+          Generador de Números Aleatorios
         </h1>
-        
+
         <div className="text-center mb-8">
           {randomNumber ? (
             <div className="relative">
@@ -27,7 +27,7 @@ export default function RandomNumber() {
               </span>
             </div>
           ) : (
-            <p className="text-lg text-blue-200">Inicia la generación numérica</p>
+            <p className="text-lg text-blue-200">Haz clic para generar un número aleatorio</p>
           )}
         </div>
 
@@ -39,10 +39,10 @@ export default function RandomNumber() {
         >
           <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 
                         group-hover:opacity-20 transition-opacity duration-300"></div>
-          Generar Número
+          Generar Número Aleatorio
         </button>
 
-        <p className="mt-6 text-sm text-blue-200 text-center">Rango disponible: 1 - 100</p>
+        <p className="mt-6 text-sm text-blue-200 text-center">Rango: 1 - 100</p>
       </div>
     </div>
   );
